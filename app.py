@@ -1,7 +1,15 @@
 import base64
 import os
 from flask import Flask, jsonify
-from micloud.miaccount import MiAccount
+
+# A hivatalos micloud csomag a MiCloud osztályt használja
+try:
+    from micloud import MiCloud as MiAccount
+except ImportError:
+    try:
+        from micloud.micloud import MiCloud as MiAccount
+    except ImportError:
+        from micloud.miaccount import MiAccount
 
 app = Flask(__name__)
 
